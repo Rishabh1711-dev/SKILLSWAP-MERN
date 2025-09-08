@@ -6,10 +6,8 @@ export default function Chatbot() {
     { type: "bot", text: "Hey There 👋 How can I help you today?" }
   ]);
   const [input, setInput] = useState("");
-
-  const API_KEY = "YOUR_API_KEY"; // replace with your Gemini key
+  const API_KEY = "AIzaSyCxZ0iQGncn8PVas25hh19vTbq7lXoPDSI";
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -17,8 +15,6 @@ export default function Chatbot() {
     const userMessage = input.trim();
     setMessages((prev) => [...prev, { type: "user", text: userMessage }]);
     setInput("");
-
-    // show temporary thinking message
     setMessages((prev) => [...prev, { type: "bot", text: "..." }]);
 
     try {
@@ -34,8 +30,6 @@ export default function Chatbot() {
       const reply =
         data.candidates?.[0]?.content?.parts?.[0]?.text ||
         "Oops! Something went wrong.";
-
-      // replace "..." with real reply
       setMessages((prev) => [
         ...prev.slice(0, -1),
         { type: "bot", text: reply }
