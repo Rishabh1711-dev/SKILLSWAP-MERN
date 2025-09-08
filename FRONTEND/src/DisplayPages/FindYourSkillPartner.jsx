@@ -1,4 +1,5 @@
 import "../styles/FindYourSkillPartner.css"
+import { Link } from "react-router-dom";
 export default function FindYourSkillPartner(){
   return (
     <div className="FindYourSkillPartnerDisplayPage">
@@ -14,7 +15,7 @@ export default function FindYourSkillPartner(){
             <input class="skills-box"type="text"placeholder="ABOUT YOURSELF"required></input>
             <input class="skills-box"type="text"placeholder="PREFFERED DURATION OF COUSRE"required></input>
         </div>
-        <div class="cta"><a href="skillswap.html">Find A Skill Partner</a></div>
+        <div class="ctaf"><Link to="/">Find A Skill Partner</Link></div>
     </section>
     </div>
   )

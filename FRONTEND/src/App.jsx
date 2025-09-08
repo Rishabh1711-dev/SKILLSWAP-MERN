@@ -8,7 +8,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<SkillSwap />} />
-        <Route path="/GetStarted" element={<GetStarted />} />
+        <Route path="/getstarted" element={<GetStarted />} />
         <Route path="/findyourskillpartner" element={<FindYourSkillPartner />} />
       </Routes>
     </Router>

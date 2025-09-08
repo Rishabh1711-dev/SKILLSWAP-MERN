@@ -101,11 +101,11 @@ body {
   box-shadow: 0 0 12px #ff4d4d;
   animation: shake 0.3s ease-in-out;
 }
-.cta {
+.ctaf {
   margin-top: 2rem;
 }
 
-.cta a {
+.ctaf a{
   cursor: pointer;
   border: none;
   font-weight: 600;
@@ -124,7 +124,7 @@ body {
   font-size: 1.1rem;
 }
 
-.cta a:hover {
+.ctaf:hover a {
   background-color: #00bcd4;
   box-shadow: 0 0 25px #ffd97a, 0 0 50px #ffd97a;
   color: #fff;
@@ -188,7 +188,7 @@ body {
     width: 90%;
   }
 
-  .cta a {
+  .ctaf Link {
     width: 90%;
     text-align: center;
   }
@@ -198,4 +198,4 @@ body {
     right: 20px;
     font-size: 0.9rem;
   }
-}
+} 

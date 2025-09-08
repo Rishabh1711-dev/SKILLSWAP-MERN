@@ -1,81 +1,83 @@
-import React, { useState, useEffect } from "react";
 import "../styles/skillswap.css";
-
+import Navbar from "../components/Navbar.jsx";
+import ProductFilter from "../components/ProductFilter.jsx";
+import CTAButton from "../components/CTAButton.jsx";
+import Chatbot from "../components/Chatbot.jsx";
+import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 export default function SkillSwap() {
-  const [chatOpen, setChatOpen] = useState(false);
+    useEffect(() => {
+    // Poppins
+    const poppins = document.createElement("link");
+    poppins.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap";
+    poppins.rel = "stylesheet";
+    document.head.appendChild(poppins);
 
-  const toggleChat = () => setChatOpen(!chatOpen);
+    // Material Symbols
+    const material = document.createElement("link");
+    material.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0";
+    material.rel = "stylesheet";
+    document.head.appendChild(material);
 
-  // FAQ toggle
-  useEffect(() => {
-    const details = document.querySelectorAll(".faq-item");
-    details.forEach((el) =>
-      el.addEventListener("toggle", (e) => {
-        const summary = el.querySelector(".faq-question");
-        if (el.open) summary.classList.add("active");
-        else summary.classList.remove("active");
-      })
-    );
+    // Cleanup if component unmounts
+    return () => {
+      document.head.removeChild(poppins);
+      document.head.removeChild(material);
+    };
   }, []);
-
-  // Product filter logic
-  useEffect(() => {
-    const links = document.querySelectorAll(".filter-link");
-    const products = document.querySelectorAll(".product-box");
-
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const category = link.id.toUpperCase();
-
-        links.forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-
-        products.forEach((p) => {
-          const pCat = p.dataset.category.toUpperCase();
-          if (category === "ALL" || pCat.includes(category)) p.style.display = "flex";
-          else p.style.display = "none";
-        });
-      });
-    });
-  }, []);
-
   return (
     <div className="skillSwapDisplayPage">
-        <header class="navbar">
-        <div class="logo">Skill<span>Swap</span></div>
+  
+      <header class="navbar">
+        <div class="logo">
+          Skill<span>Swap</span>
+        </div>
         <nav class="nav-links">
-          <a href="#" class="nav-link active">Home</a>
-          <a href="#" class="nav-link active">How It Works</a>
-          <a href="#" class="nav-link active">Skills</a>
-          <a href="#" class="nav-link active">Community</a>
-          <a href="#" class="nav-link active">FAQ</a>
+          <a href="#" class="nav-link active">
+            Home
+          </a>
+          <a href="#" class="nav-link active">
+            How It Works
+          </a>
+          <a href="#" class="nav-link active">
+            Skills
+          </a>
+          <a href="#" class="nav-link active">
+            Community
+          </a>
+          <a href="#" class="nav-link active">
+            FAQ
+          </a>
         </nav>
-        <a href="getStarted.html" class="get-started">Get Started</a>
+        <Link to="/getstarted" class="get-started"> Get Started</Link>
+         
       </header>
 
       <section class="hero">
         <div class="hero-text">
-          <h1>Exchange <span class="highlight">Your Skills</span></h1>
+          <h1>
+            Exchange <span class="highlight">Your Skills</span>
+          </h1>
           <p class="subtext">
             Have a skill? Photography, surfing, or teaching languages? Share it
             on SkillSwap and discover your perfect learning partner—online or in
             person.
           </p>
-          <a href="FindYourSkillPartner.html" class="cta"
-            >Find A Skill Partner</a
-          >
+          <Link to="/findyourskillpartner" class="cta">Find A Skill Partner</Link>
+            
         </div>
         <div class="hero-image">
           <img
-            src="/SKILLSWAP/media/illustration-depicting-a-team-of-three-professionals-collaborating-and-brainstorming-new-ideas-represented-by-a-lightbulb-with-laptops-and-a-stack-of-books-free-vector.jpg"
+            src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260699/illustration-depicting-a-team-of-three-professionals-collaborating-and-brainstorming-new-ideas-represented-by-a-lightbulb-with-laptops-and-a-stack-of-books-free-vector_ebkpge.jpg"
             alt="Team Collaboration"
           />
         </div>
       </section>
 
       <section class="highlight-section">
-        <h2>Learn <span class="highlight">Something New</span> For Free!</h2>
+        <h2>
+          Learn <span class="highlight">Something New</span> For Free!
+        </h2>
         <p class="subtext">
           Make a new friend and reach your personal growth goals, one skill at a
           time.
@@ -84,10 +86,7 @@ export default function SkillSwap() {
 
       <section class="features">
         <div class="feature-box">
-          <img
-            src="/SKILLSWAP/media/icons8-skill-50.png"
-            alt="Skill Marketplace"
-          />
+          <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260698/icons8-skill-50_pqlwpu.png" alt="Skill Marketplace" />
           <h3>Skill Marketplace</h3>
           <p>
             Browse a diverse catalog of skills—cooking, coding, photography,
@@ -96,11 +95,12 @@ export default function SkillSwap() {
           <a
             href="https://in.search.yahoo.com/search?fr=mcafee&type=E210IN1590G0&p=SKILL+MARKETPLACE"
             class="learn-link"
-            >Learn More</a
           >
+            Learn More
+          </a>
         </div>
         <div class="feature-box">
-          <img src="/SKILLSWAP/media/icons8-interface-40.png" alt="Interface" />
+          <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260697/icons8-interface-64_zuhlc4.png" alt="Interface" />
           <h3>New Interface</h3>
           <p>
             Connect with learners and teachers, schedule your swap, and start
@@ -109,11 +109,12 @@ export default function SkillSwap() {
           <a
             href="https://in.search.yahoo.com/search?fr=mcafee&type=E210IN1590G0&p=NEW+INTERFACE"
             class="learn-link"
-            >Learn More</a
           >
+            Learn More
+          </a>
         </div>
         <div class="feature-box">
-          <img src="/SKILLSWAP/media/icons8-human-100.png" alt="Community" />
+          <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260695/icons8-human-100_tbizi4.png" alt="Community" />
           <h3>Vibrant Community</h3>
           <p>
             No matter your level, SkillSwap welcomes everyone. Be a learner, be
@@ -122,40 +123,56 @@ export default function SkillSwap() {
           <a
             href="https://in.search.yahoo.com/search?fr=mcafee&type=E210IN1590G0&p=vibrant+community"
             class="learn-link"
-            >Learn More</a
           >
+            Learn More
+          </a>
         </div>
       </section>
       <section class="explore">
         <div class="writings">
-          <h1>Explore Our <span class="highlight">Skills</span></h1>
+          <h1>
+            Explore Our <span class="highlight">Skills</span>
+          </h1>
           <p>
             Explore a diverse range of skills contributed by passionate learners
-            and experts from around the world . Our<br />
+            and experts from around the world . Our
+            <br />
             community-driven platform connects you with the right people to
             learn from or teach .
           </p>
         </div>
         <div class="explore-link">
-          <a href="#" class="filter-link" id="All">All</a>
-          <a href="#" class="filter-link" id="Technology">Technology</a>
-          <a href="#" class="filter-link" id="Design">Design</a>
-          <a href="#" class="filter-link" id="Lifestyle">Lifestyle</a>
-          <a href="#" class="filter-link" id="Business">Business</a>
-          <a href="#" class="filter-link" id="Technology">Language</a>
+          <a href="#" class="filter-link" id="All">
+            All
+          </a>
+          <a href="#" class="filter-link" id="Technology">
+            Technology
+          </a>
+          <a href="#" class="filter-link" id="Design">
+            Design
+          </a>
+          <a href="#" class="filter-link" id="Lifestyle">
+            Lifestyle
+          </a>
+          <a href="#" class="filter-link" id="Business">
+            Business
+          </a>
+          <a href="#" class="filter-link" id="Technology">
+            Language
+          </a>
         </div>
         <div class="product-container">
           <div class="product-box" data-category="DESIGN">
             <a href="payment.html">
               <img
                 class="product-image"
-                src="\SKILLSWAP\media\ai-generated-9148695_640.jpg"
+                src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260739/8522418_voqzid.jpg"
               />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Canva For Beginners
@@ -164,15 +181,12 @@ export default function SkillSwap() {
           </div>
           <div class="product-box" data-category="TECHNOLOGY">
             <a href="payment.html">
-              <img
-                class="product-image"
-                src="\SKILLSWAP\media\resume-3604240_640.jpg"
-              />
+              <img class="product-image" src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260701/resume-3604240_640_ryhesj.jpg" />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Resume & LinkedIn Writing
@@ -183,13 +197,13 @@ export default function SkillSwap() {
             <a href="payment.html">
               <img
                 class="product-image"
-                src="\SKILLSWAP\media\pexels-mundointelectual1998-8944614.jpg"
+                src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260704/pexels-mundointelectual1998-8944614_sjm5pz.jpg"
               />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Conversational Spanish
@@ -198,15 +212,12 @@ export default function SkillSwap() {
           </div>
           <div class="product-box" data-category="LIFESTYLE">
             <a href="payment.html">
-              <img
-                class="product-image"
-                src="\SKILLSWAP\media\01_AshleyEllis_0078.jpg"
-              />
+              <img class="product-image" src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260696/01_AshleyEllis_0078_ztp3bx.jpg" />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Dance Lessons For Beginners
@@ -217,13 +228,13 @@ export default function SkillSwap() {
             <a href="payment.html">
               <img
                 class="product-image"
-                src="\SKILLSWAP\media\How-to-Become-a-Front-End-Developer-in-2020.png"
+                src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260690/How-to-Become-a-Front-End-Developer-in-2020_ha715g.png"
               />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Front End Development
@@ -234,13 +245,13 @@ export default function SkillSwap() {
             <a href="payment.html">
               <img
                 class="product-image"
-                src="\SKILLSWAP\media\2017-09-14-Interviews-ThinkstockPhotos-621579258.jpg"
+                src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260711/2017-09-14-Interviews-ThinkstockPhotos-621579258_x4ni7n.jpg"
               />
             </a>
             <div>
-              <img src="\SKILLSWAP\media\icons8-calendar-24.png" />15th May
-              26<img src="\SKILLSWAP\media\icons8-clock-24.png" />1 Hour 40
-              Minutes
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260693/icons8-calendar-24_zklblx.png" />
+              15th May 26
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260694/icons8-clock-24_s1nqox.png" />1 Hour 40 Minutes
             </div>
             <div class="product-discription">
               Interview Preparations
@@ -250,7 +261,9 @@ export default function SkillSwap() {
         </div>
       </section>
       <section class="success-stories">
-        <h2 class="section-title">Success <span>Stories</span></h2>
+        <h2 class="section-title">
+          Success <span>Stories</span>
+        </h2>
         <div class="story-container">
           <div class="story-card">
             <p class="story-text">
@@ -258,10 +271,7 @@ export default function SkillSwap() {
               design! It was a win-win.”
             </p>
             <div class="story-user">
-              <img
-                src="\SKILLSWAP\media\uifaces-popular-image (1).jpg"
-                alt="User"
-              />
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260703/uifaces-popular-image_1_lswxjl.jpg" alt="User" />
               <div>
                 <h4>K. Kumar</h4>
                 <span>UI Designer ↔ Front-End Learner</span>
@@ -274,10 +284,7 @@ export default function SkillSwap() {
               it effortless and fun!”
             </p>
             <div class="story-user">
-              <img
-                src="\SKILLSWAP\media\uifaces-popular-image.jpg"
-                alt="User"
-              />
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260704/uifaces-popular-image_t9upq8.jpg" alt="User" />
               <div>
                 <h4>Mayank Pandey</h4>
                 <span>Language Coach ↔ Music Enthusiast</span>
@@ -290,7 +297,7 @@ export default function SkillSwap() {
               marketing. Amazing experience.”
             </p>
             <div class="story-user">
-              <img src="\SKILLSWAP\media\uifaces-human-image.jpg" alt="User" />
+              <img src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260702/uifaces-human-image_fpotjs.jpg" alt="User" />
               <div>
                 <h4>Priya Yadav</h4>
                 <span>Photographer ↔ Marketing Specialist</span>
@@ -302,7 +309,11 @@ export default function SkillSwap() {
 
       <section class="faq-section">
         <div class="faq-title">
-          <h2>Got Questions?<br /><span>We've Got Answers</span></h2>
+          <h2>
+            Got Questions?
+            <br />
+            <span>We've Got Answers</span>
+          </h2>
         </div>
         <div class="faq-container">
           <details class="faq-item">
@@ -353,7 +364,9 @@ export default function SkillSwap() {
       <footer class="footer">
         <div class="footer-columns">
           <div class="footer-brand">
-            <div class="logo">Skill<span>Swap</span></div>
+            <div class="logo">
+              Skill<span>Swap</span>
+            </div>
             <p>
               SkillSwap is here for it! For establishing that connection! Make
               your match! In person or Online!
@@ -385,22 +398,25 @@ export default function SkillSwap() {
                 <a
                   class="social-links"
                   href="https://www.instagram.com/rishabh_1711_?igsh=MTEwcG9mNGFvMzZqaA%3D%3D&utm_source=qr"
-                  >Instagram</a
                 >
+                  Instagram
+                </a>
               </li>
               <li>
                 <a
                   class="social-links"
                   href="https://www.linkedin.com/in/rishabh-bhardwaj-a875252a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                  >LinkedIn</a
                 >
+                  LinkedIn
+                </a>
               </li>
               <li>
                 <a
                   class="social-links"
                   href="https://www.linkedin.com/in/rishabh-bhardwaj-a875252a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                  >LeetCode</a
                 >
+                  LeetCode
+                </a>
               </li>
             </ul>
           </div>
@@ -413,38 +429,61 @@ export default function SkillSwap() {
           </div>
         </div>
       </footer>
-    <button id="chatbot-toggler">
-      <span class="material-symbols-rounded"> mode_comment</span>
-      <span class="material-symbols-rounded"> close</span>
-    </button>
-<section class="chat-bot-bot">
-    <div class="chatbot-popup">
-      <div class="chat-header">
-        <div class="header-info">
-       <img id="chatbot-logo"src="\SKILLSWAP\media\bot.png" alt="chatbotlogo"></img>
-          <h2 class="logo-text">Chatbot</h2>
-        </div>
-        <button id="close-chatbot" class="material-symbols-outlined"> keyboard_arrow_down </button>
-      </div>
-      </div>
-      <div class="chat-body">
-        <div class="message bot-message">
-           <img class="bot-avatar" src="\SKILLSWAP\media\bot.png" alt="chatbotlogo"></img>
-          <div class="message-text">Hey There 👋<br/>How can I help you today?</div>
-        </div>
-      </div>
-        <div class="chat-footer">
-        <form action="#" class="chat-form">
-          <textarea placeholder="Message..." class="message-input"></textarea>
-          <div class="chat-controls">
-            <button type="button" class="material-symbols-outlined"> sentiment_satisfied </button>
-            <button type="button" class="material-symbols-outlined"> attach_file </button>
-            <button type="submit"  class="material-symbols-outlined"> arrow_upward </button>
+       <button id="chatbot-toggler">
+        <span class="material-symbols-rounded"> mode_comment</span>
+        <span class="material-symbols-rounded"> close</span>
+      </button>
+      <section class="chat-bot-bot">
+        <div class="chatbot-popup">
+          <div class="chat-header">
+            <div class="header-info">
+              <img
+                id="chatbot-logo"
+                src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260691/bot_a1nala.png"
+                alt="chatbotlogo"
+              ></img>
+              <h2 class="logo-text">Chatbot</h2>
+            </div>
+            <button id="close-chatbot" class="material-symbols-outlined">
+              {" "}
+              keyboard_arrow_down{" "}
+            </button>
           </div>
-        </form>
-      </div>
-      
-    </section>
+        </div>
+        <div class="chat-body">
+          <div class="message bot-message">
+            <img
+              class="bot-avatar"
+              src="https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260691/bot_a1nala.png"
+              alt="chatbotlogo"
+            ></img>
+            <div class="message-text">
+              Hey There 👋
+              <br />
+              How can I help you today?
+            </div>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <form action="#" class="chat-form">
+            <textarea placeholder="Message..." class="message-input"></textarea>
+            <div class="chat-controls">
+              <button type="button" class="material-symbols-outlined">
+                {" "}
+                sentiment_satisfied{" "}
+              </button>
+              <button type="button" class="material-symbols-outlined">
+                {" "}
+                attach_file{" "}
+              </button>
+              <button type="submit" class="material-symbols-outlined">
+                {" "}
+                arrow_upward{" "}
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }
