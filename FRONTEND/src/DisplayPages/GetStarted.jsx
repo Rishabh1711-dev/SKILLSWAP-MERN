@@ -72,7 +72,7 @@ export default function GetStarted() {
             <label>
               <input type="checkbox" /> Remember Me
             </label>
-            <button type="submit" id="submit">
+            <button Link to="/" type="submit" id="submit">
               LOGIN
             </button>
             <Link to="/GetStarted">
