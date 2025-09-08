@@ -7,19 +7,14 @@ import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 export default function SkillSwap() {
     useEffect(() => {
-    // Poppins
     const poppins = document.createElement("link");
     poppins.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap";
     poppins.rel = "stylesheet";
     document.head.appendChild(poppins);
-
-    // Material Symbols
     const material = document.createElement("link");
     material.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0";
     material.rel = "stylesheet";
     document.head.appendChild(material);
-
-    // Cleanup if component unmounts
     return () => {
       document.head.removeChild(poppins);
       document.head.removeChild(material);
