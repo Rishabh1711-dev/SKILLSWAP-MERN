@@ -1,22 +1,31 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-// Import Pages
 import SkillSwap from "./DisplayPages/SkillSwap.jsx";
-import GetStarted from "./DisplayPages/GetStarted.jsx"; // This is our Login Page
-import Register from "./DisplayPages/Register.jsx"; // Our new Register Page
+import GetStarted from "./DisplayPages/GetStarted.jsx";
+import Register from "./DisplayPages/Register.jsx";
 
-// Protected Route Component
+// Protected Route Component with Logging
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/getstarted" />;
+  
+  // --- DEBUGGING ---
+  console.log("ProtectedRoute check:", { token: token });
+
+  if (!token) {
+    console.log("No token found, redirecting to /getstarted");
+    // If no token, redirect to the login page.
+    return <Navigate to="/getstarted" />;
+  }
+
+  // If a token exists, render the child component (SkillSwap page).
+  return children;
 };
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Protected Route: Only accessible if logged in */}
         <Route 
           path="/" 
           element={
@@ -25,8 +34,6 @@ export default function App() {
             </ProtectedRoute>
           } 
         />
-        
-        {/* Public Routes */}
         <Route path="/getstarted" element={<GetStarted />} />
         <Route path="/register" element={<Register />} />
       </Routes>

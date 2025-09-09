@@ -4,9 +4,10 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken
 import User from "./User.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT||5000;
 
 // --- Middleware ---
 app.use(cors());
@@ -14,11 +15,11 @@ app.use(express.json());
 
 // --- Database Connection ---
 // This will be replaced by your .env file in a real deployment
-const MONGO_URI ="mongodb+srv://rishabhbhardwaj0906:ramram1711@cluster0.p481r2t.mongodb.net/" ; 
-const JWT_SECRET ="hbcwbweivbibviwbviwbviwbvo798109u248eh1rnnfowo";
+const MONGO_URI =process.env.MONGO_URI ; 
+const JWT_SECRET =process.env.JWT_SECRET;
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected successfully."))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -72,5 +73,5 @@ app.post("/login", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
