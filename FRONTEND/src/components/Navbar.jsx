@@ -3,10 +3,23 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-  const { isAuthenticated, user, logout } = useAuth();
-
+  const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  }
+  // Load user info from localStorage on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  
+  // Logout handler
   const handleLogout = () => {
-    logout();
+    localStorage.removeItem("user"); // remove user info
+    setUser(null);                   // update state
+    navigate("/");                   // redirect to homepage
   };
 
   return (

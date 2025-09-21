@@ -50,7 +50,7 @@ export default function SkillSwap() {
             on SkillSwap and discover your perfect learning partner—online or in
             person.
           </p>
-          <Link to="/findyourskillpartner" className="cta">Find A Skill Partner</Link>
+          <Link to="/find-partner" className="cta">Find A Skill Partner</Link>
         </div>
         <div className="hero-image">
           <img src={cloudinaryUrls.illustration} alt="Team Collaboration" />

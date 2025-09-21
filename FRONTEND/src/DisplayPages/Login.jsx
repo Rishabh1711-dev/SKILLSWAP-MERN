@@ -30,7 +30,7 @@ const Login = () => {
         password,
       });
       login(res.data);
-      navigate("/"); // redirect on success
+      navigate("/skillswap"); // redirect on success
     } catch (err) {
       setError(
         err.response?.data?.message || "Login failed. Please try again."
