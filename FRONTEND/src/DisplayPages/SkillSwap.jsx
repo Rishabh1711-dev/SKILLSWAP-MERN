@@ -39,7 +39,7 @@ export default function SkillSwap() {
           <a href="#" className="nav-link">Community</a>
           <a href="#" className="nav-link">FAQ</a>
         </nav>
-        <Link to="/GetStarted" className="get-started">Get Started</Link>
+        <Link to="/register" className="get-started">Get Started</Link>
       </header>
 
       <section className="hero">
