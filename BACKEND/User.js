@@ -1,22 +1,21 @@
-import mongoose from "mongoose";
+// BACKEND/models/User.js
+
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  username: {
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  skillsToTeach: [{ type: String }],
+  skillsToLearn: [{ type: String }],
+  availability: {
     type: String,
-    required: true,
-    unique: true,
+    enum: ['morning', 'afternoon', 'evening', 'weekends'],
+    default: 'weekends'
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  location: { type: String },
+  bio: { type: String }
 });
 
-const User = mongoose.model("User", userSchema);
-
-export default User;
+const User = mongoose.model('User', userSchema);
+module.exports = User;
