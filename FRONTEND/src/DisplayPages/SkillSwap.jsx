@@ -8,7 +8,7 @@ import Chatbot from "../components/Chatbot.jsx";
 // You can manage your Cloudinary URLs here for easier access
 const cloudinaryUrls = {
   illustration: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260699/illustration-depicting-a-team-of-three-professionals-collaborating-and-brainstorming-new-ideas-represented-by-a-lightbulb-with-laptops-and-a-stack-of-books-free-vector_ebkpge.jpg",
-  skillIcon: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260698/icons8-skill-100_shmney.png",
+  skillIcon: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1758461091/skill-development_yyoczp.png",
   interfaceIcon: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260697/icons8-interface-64_zuhlc4.png",
   communityIcon: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260695/icons8-human-100_tbizi4.png",
   user1: "https://res.cloudinary.com/dtwjc8gng/image/upload/v1757260703/uifaces-popular-image_1_lswxjl.jpg",
@@ -39,7 +39,7 @@ export default function SkillSwap() {
           <a href="#" className="nav-link">Community</a>
           <a href="#" className="nav-link">FAQ</a>
         </nav>
-        <Link to="/register" className="get-started">Get Started</Link>
+        <Link to="/find-partner" className="get-started">Get Started</Link>
       </header>
 
       <section className="hero">
