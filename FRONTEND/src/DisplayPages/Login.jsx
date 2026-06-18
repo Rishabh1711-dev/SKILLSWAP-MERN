@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import { useAuth } from "../context/AuthContext"; // Assuming you have this context
 import "../styles/Login.css";
+ import { API_URL } from "../config";
 
 // Importing icons for the feature list
 import { FaChalkboardTeacher, FaLightbulb, FaUsers } from 'react-icons/fa';
@@ -15,31 +16,53 @@ const Homepage = () => {
 
   // const { login } = useAuth(); // Uncomment when your AuthContext is ready
   const navigate = useNavigate();
-  const { email, password } = formData;
+const { email, password } = formData;
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+const onChange = (e) =>
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      // This is a mock success response. Replace with your actual API call.
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network request
-      const mockUserData = { token: 'mock-token', user: { email } };
-      // Real API call (keep this for your implementation)
-      // const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
-      // login(res.data);
-      
-      console.log("Logged in with:", mockUserData); // For testing
-      navigate("/skillswap"); // Redirect on success
-    } catch (err) {
-      setError(err.response?.data?.message || "Login failed. Please check your credentials.");
-      console.error(err);
-    } finally {
-      setLoading(false);
+const onSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+
+  try {
+    const res = await axios.post(
+      `${API_URL}/api/users/login`,
+      {
+        email,
+        password,
+      }
+    );
+
+    console.log("Login Success:", res.data);
+
+    if (res.data.token) {
+      localStorage.setItem("token", res.data.token);
     }
-  };
+
+    if (res.data.user) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify(res.data.user)
+      );
+    }
+
+    navigate("/skillswap");
+  } catch (err) {
+    console.error(err);
+
+    setError(
+      err.response?.data?.message ||
+      "Login failed. Please check your credentials."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="homepage-container">

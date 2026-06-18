@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/getstarted.css"; // We can reuse the same styles
+import { API_URL } from "../config";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -20,11 +21,14 @@ export default function Register() {
     }
 
     try {
-      const response = await axios.post("http://13.203.217.105:5000//register", {
-        username,
-        email,
-        password,
-      });
+  const response = await axios.post(
+  `${API_URL}/api/users/register`,
+  {
+    name: username,
+    email,
+    password,
+  }
+);
 
       // Store the token and redirect to the main site
       localStorage.setItem("token", response.data.token);
