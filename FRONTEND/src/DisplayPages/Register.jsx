@@ -20,7 +20,7 @@ export default function Register() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/register", {
+      const response = await axios.post("http://13.203.217.105:5000//register", {
         username,
         email,
         password,
